@@ -38,14 +38,12 @@ public record BukkitMannequinBrain(Mannequin mannequin) implements MannequinBrai
         Vector source = from.toVector();
 
         Vector direction = target.clone().subtract(source);
-        if (direction.lengthSquared() == 0) {
+        if (direction.lengthSquared() <= 0.00001) {
             // same position
             return;
         }
 
         Vector look = direction.clone();
-        // Optional: face horizontally only
-        // look.setY(0);
 
         Location lookLoc = from.clone();
         lookLoc.setDirection(look);
